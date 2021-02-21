@@ -1,5 +1,5 @@
-# Handwriting-number-recognition
-a PyTorch implementation - handwriting  number recognition with GAN model using MNIST Dataset
+# Handwritten-digits-generation
+a PyTorch implementation - handwritten digits generation/recognition with GAN model using MNIST Dataset
 
 ## Project Goal 
 The goal is to generate new handwritten digits using a generative adversarial network (GAN) trained on the MNIST dataset.
