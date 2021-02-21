@@ -29,6 +29,33 @@ The generator network will be almost exactly the same as the discriminator netwo
 
 > tanH Output : The generator has been found to perform the best with  tanh  for the generator output, which scales the output to be between -1 and 1, instead of 0 and 1.
 
+### Discriminator and Generator Losses
+#### Discriminator Losses
+For the discriminator, the total loss is the sum of the losses for real and fake images, `d_loss = d_real_loss + d_fake_loss`.
+> loss : The discriminator to output 1 for real images and 0 for fake images
+
+The discriminator loss for the fake data is similar. We want D(fake_images) = 0, where the fake images are the generator output, fake_images = G(z).
+
+#### Generator Loss
+The generator loss will look similar only with flipped labels. The generator's goal is to get D(fake_images) = 1. In this case, the labels are flipped to represent that the generator is trying to fool the discriminator into thinking that the images it generates (fakes) are real.
+
+### ㅆraining
+Training will involve alternating between training the discriminator and the generator. Loss functions `real_loss` and `fake_loss` are to calculate the discriminator losses in all of the following cases.
+
+#### Discriminator training
+1. Compute the discriminator loss on real, training images
+2. Generate fake images
+3. Compute the discriminator loss on fake, generated images
+4. Add up real and fake loss
+5. Perform backpropagation + an optimization step to update the discriminator's weights
+#### Generator training
+1. Generate fake images
+2. Compute the discriminator loss on fake images, using flipped labels!
+3. Perform backpropagation + an optimization step to update the generator's weights
+
+## Result
+![result](result.png)
+
 ## Reference 
 * [2014 Generative Adversarial Network](https://arxiv.org/abs/1406.2661)
 * [Pix2Pix]
