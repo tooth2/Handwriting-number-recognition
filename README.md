@@ -11,6 +11,24 @@ The generator is trained to fool the discriminator, it wants to output data that
 The discriminator is a classifier that is trained to figure out which data is real and which is fake.
 What ends up happening is that the generator learns to make data that is indistinguishable from real data to the discriminator.
 
+![GAN](assets/gan_pipeline.png)
+
+The general structure of a GAN is using MNIST images as data. The latent sample is a random vector that the generator uses to construct its fake images. This is often called a latent vector and that vector space is called latent space. As the generator trains, it figures out how to map latent vectors to recognizable images that can fool the discriminator.
+## GAN : Define the Model
+A GAN is comprised of two adversarial networks, a discriminator and a generator.
+### Discriminator
+The discriminator network is going to be a pretty typical linear classifier. To make this network a universal function approximator, at least one hidden layer is needed, and these hidden layers should have one key attribute:
+
+![GAN network](assets/gan_network.png)
+
+All hidden layers will have a Leaky ReLu activation function applied to their outputs.
+Leaky ReLu: A leaky ReLU is used to allow gradients to flow backwards through the layer unimpeded. A leaky ReLU is like a normal ReLU, except that there is a small non-zero output for negative input values.
+
+### Generator 
+The generator network will be almost exactly the same as the discriminator network, except applying a tanh activation function to the output layer.
+
+> tanH Output : The generator has been found to perform the best with  tanh  for the generator output, which scales the output to be between -1 and 1, instead of 0 and 1.
+
 ## Reference 
 * [2014 Generative Adversarial Network](https://arxiv.org/abs/1406.2661)
 * [Pix2Pix]
